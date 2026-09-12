@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Panel de pedidos - SaborCasero</title>
+
+    <link rel="stylesheet" href="css/estilos.css">
+</head>
+
+<body>
+
+<header>
+    <h1>SaborCasero</h1>
+</header>
+
+<main>
+    <h2 id="titulo-panel">Panel de pedidos</h2>
+    <p id="usuario-panel"></p>
+
+    <section class="order-panel">
+        <h3>Pedido #<span class="numeric-value" id="pedido-id"></span></h3>
+        <p><strong>Cliente:</strong> <span id="pedido-cliente"></span></p>
+        <p><strong>Productos:</strong> <span id="pedido-productos"></span></p>
+        <p><strong>Dirección:</strong> <span id="pedido-direccion"></span></p>
+        <p class="price"><strong>Total:</strong> $<span class="numeric-value" id="pedido-total"></span></p>
+        <p class="order-status" id="pedido-estado"></p>
+        <p id="pedido-descripcion"></p>
+        <p id="pedido-repartidor"></p>
+        <div id="acciones-pedido" class="order-actions"></div>
+    </section>
+
+    <nav class="panel-links">
+        <a href="productos.html">Volver a productos</a>
+        <button type="button" id="cerrar-sesion">Cerrar sesión</button>
+    </nav>
+</main>
+
+<footer>
+    <p>SaborCasero - Prototipo de gestión de pedidos</p>
+    <p>© <span class="numeric-value">2026</span> SaborCasero</p>
+</footer>
+
+<script src="js/panel-roles.js"></script>
+
+</body>
+
+</html>

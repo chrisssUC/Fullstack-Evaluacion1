@@ -1,5 +1,43 @@
 let formulario = document.getElementById("formLogin");
 
+let usuariosDemo = [
+    {
+        correo: "admin@duoc.cl",
+        contrasena: "1234",
+        nombre: "Pedro Soto",
+        rol: "Administrador",
+        destino: "admin.html"
+    },
+    {
+        correo: "cliente@saborcasero.cl",
+        contrasena: "1234",
+        nombre: "Cesar Garcia",
+        rol: "Cliente",
+        destino: "panel-roles.html"
+    },
+    {
+        correo: "cocina@saborcasero.cl",
+        contrasena: "1234",
+        nombre: "Ana Cocina",
+        rol: "Cocinero",
+        destino: "panel-roles.html"
+    },
+    {
+        correo: "reparto@saborcasero.cl",
+        contrasena: "1234",
+        nombre: "Luis Reparto",
+        rol: "Repartidor",
+        destino: "panel-roles.html"
+    },
+    {
+        correo: "jefe@saborcasero.cl",
+        contrasena: "1234",
+        nombre: "Maria Jefa de Cocina",
+        rol: "Jefe de cocina",
+        destino: "panel-roles.html"
+    }
+];
+
 formulario.addEventListener("submit", function(event) {
 
     event.preventDefault();
@@ -33,7 +71,8 @@ formulario.addEventListener("submit", function(event) {
     if (
         !correo.endsWith("@duoc.cl") &&
         !correo.endsWith("@profesor.duoc.cl") &&
-        !correo.endsWith("@gmail.com")
+        !correo.endsWith("@gmail.com") &&
+        !correo.endsWith("@saborcasero.cl")
     ) {
 
         errorCorreo.innerHTML = "Correo no permitido";
@@ -59,18 +98,23 @@ formulario.addEventListener("submit", function(event) {
     }
 
 
-    // LOGIN DEL ADMINISTRADOR
+    let usuariosRegistrados =
+        JSON.parse(localStorage.getItem("usuariosRegistrados")) || [];
 
-    if (correo == "admin@duoc.cl" && contrasena == "1234") {
+    let usuariosDisponibles = usuariosDemo.concat(usuariosRegistrados);
 
-        alert("Bienvenido administrador");
+    let usuarioEncontrado = usuariosDisponibles.find(function(usuario) {
+        return usuario.correo == correo && usuario.contrasena == contrasena;
+    });
 
-        window.location.href = "./admin.html";
-
+    if (!usuarioEncontrado) {
+        errorContrasena.innerHTML = "Correo o contraseña incorrectos";
         return;
     }
 
+    localStorage.setItem("usuarioActual", JSON.stringify(usuarioEncontrado));
 
-    alert("Inicio de sesión correcto");
+    alert("Bienvenido " + usuarioEncontrado.nombre);
+    window.location.href = usuarioEncontrado.destino;
 
 });

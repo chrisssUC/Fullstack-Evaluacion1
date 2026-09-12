@@ -71,6 +71,8 @@ formRegistro.addEventListener("submit", function(event) {
     let nombre = document.getElementById("nombre").value;
     let apellidos = document.getElementById("apellidos").value;
     let correo = document.getElementById("correo").value;
+    let contrasena = document.getElementById("contrasenaRegistro").value;
+    let confirmarContrasena = document.getElementById("confirmarContrasena").value;
 
     let regionSeleccionada =
         document.getElementById("region").value;
@@ -88,6 +90,8 @@ formRegistro.addEventListener("submit", function(event) {
     document.getElementById("errorNombre").innerHTML = "";
     document.getElementById("errorApellidos").innerHTML = "";
     document.getElementById("errorCorreo").innerHTML = "";
+    document.getElementById("errorContrasenaRegistro").innerHTML = "";
+    document.getElementById("errorConfirmarContrasena").innerHTML = "";
     document.getElementById("errorRegion").innerHTML = "";
     document.getElementById("errorComuna").innerHTML = "";
     document.getElementById("errorDireccion").innerHTML = "";
@@ -176,11 +180,30 @@ formRegistro.addEventListener("submit", function(event) {
     if (
         !correo.endsWith("@duoc.cl") &&
         !correo.endsWith("@profesor.duoc.cl") &&
-        !correo.endsWith("@gmail.com")
+        !correo.endsWith("@gmail.com") &&
+        !correo.endsWith("@saborcasero.cl")
     ) {
 
         document.getElementById("errorCorreo").innerHTML =
             "Correo no permitido";
+
+        return;
+    }
+
+
+    if (contrasena.length < 4 || contrasena.length > 10) {
+
+        document.getElementById("errorContrasenaRegistro").innerHTML =
+            "La contraseña debe tener entre 4 y 10 caracteres";
+
+        return;
+    }
+
+
+    if (contrasena != confirmarContrasena) {
+
+        document.getElementById("errorConfirmarContrasena").innerHTML =
+            "Las contraseñas no coinciden";
 
         return;
     }
@@ -228,6 +251,36 @@ formRegistro.addEventListener("submit", function(event) {
     }
 
 
-    alert("Usuario registrado correctamente");
+    let usuariosRegistrados =
+        JSON.parse(localStorage.getItem("usuariosRegistrados")) || [];
+
+    let correoRegistrado = usuariosRegistrados.some(function(usuario) {
+        return usuario.correo == correo;
+    });
+
+    if (correoRegistrado) {
+        document.getElementById("errorCorreo").innerHTML =
+            "Este correo ya está registrado";
+
+        return;
+    }
+
+    usuariosRegistrados.push({
+        run: run,
+        nombre: nombre + " " + apellidos,
+        correo: correo,
+        contrasena: contrasena,
+        rol: "Cliente",
+        destino: "panel-roles.html",
+        direccion: direccion
+    });
+
+    localStorage.setItem(
+        "usuariosRegistrados",
+        JSON.stringify(usuariosRegistrados)
+    );
+
+    alert("Usuario registrado correctamente. Ahora puedes iniciar sesión.");
+    window.location.href = "login.html";
 
 });
