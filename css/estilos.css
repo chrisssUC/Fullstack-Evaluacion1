@@ -5,8 +5,15 @@
     --texto: #633b2a;
 }
 
+@font-face {
+    font-family: "SundayGinger";
+    src: url("../fonts/SundayGinger-Regular.ttf") format("truetype");
+    font-weight: normal;
+    font-style: normal;
+}
+
 body {
-    font-family: "Trebuchet MS", sans-serif;
+    font-family: "SundayGinger", sans-serif;
     margin: 0;
     color: var(--texto);
     background: linear-gradient(135deg, #fff8f1 0%, #fbd4b5 48%, #f4b183 100%);
@@ -39,12 +46,14 @@ nav a:hover {
     position: absolute;
     top: 20px;
     right: 20px;
+    white-space: nowrap;
 }
 
 .register-link {
     position: absolute;
     top: 20px;
-    right: 125px;
+    right: 175px;
+    white-space: nowrap;
 }
 
 main {
@@ -151,6 +160,14 @@ textarea {
     padding: 10px;
     border: 1px solid #e8a477;
     border-radius: 4px;
+}
+
+.price,
+.numeric-value,
+input[type="number"],
+.auth-form #run,
+.total-price {
+    font-family: "Trebuchet MS", sans-serif;
 }
 #errorCodigo,
 #errorNombreProducto,

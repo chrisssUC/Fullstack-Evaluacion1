@@ -51,7 +51,7 @@ for (let producto of productos) {
 
             <h3>${producto.nombre}</h3>
 
-            <p>Precio: $${producto.precio}</p>
+            <p class="price">Precio: $${producto.precio}</p>
 
             <button onclick="agregarCarrito(${productos.indexOf(producto)})">
                 Agregar al carrito

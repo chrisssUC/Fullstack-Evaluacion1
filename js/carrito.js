@@ -15,7 +15,7 @@ for (let i = 0; i < carrito.length; i++) {
 
             <h3>${carrito[i].nombre}</h3>
 
-            <p>Precio: $${carrito[i].precio}</p>
+            <p class="price">Precio: $${carrito[i].precio}</p>
 
         </article>
     `;
