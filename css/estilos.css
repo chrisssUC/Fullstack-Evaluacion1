@@ -245,3 +245,22 @@ input[type="number"],
     color: var(--naranja-profundo);
     font-weight: bold;
 }
+
+.btn-productos{
+    display: inline-block;
+    background-color: var(--naranja-profundo);
+    color: white;
+    text-decoration: none;
+    padding: 12px 22px;
+    margin-top: 10px;
+    border-radius: 8px;
+    transition: transform 0.2s ease, background-color 0.2s ease;
+
+}
+
+.btn-productos:hover {
+    background-color: #ad582d;
+    transform: translateY(-2px);
+}
+
+
