@@ -263,4 +263,43 @@ input[type="number"],
     transform: translateY(-2px);
 }
 
+@media (max-width: 768px){
+    
+    article {
+        width: 90%;
+        max-width: 320px;
+        margin: 12px auto;
+        display: block;
+    }
 
+    header {
+        padding: 20px 10px;
+    }
+
+    nav {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+        gap: 3px;
+        margin-top: 15px;
+    }
+
+    nav a {
+        display: block;
+        width: auto;
+        margin: 0;
+        padding: 4px 10px;
+    }
+
+    .login-link,
+    .register-link {
+        position: static;
+        display: block;
+        margin: 0;
+    }
+
+    header h1 {
+        margin-top: 10px;
+    }
+}
